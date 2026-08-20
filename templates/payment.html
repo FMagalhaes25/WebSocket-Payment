@@ -59,12 +59,23 @@
       </footer>
     </main>
 
+    <script
+      src="{{ url_for('static', filename='js/pix-celebration.js') }}"
+      data-check="{{ url_for('static', filename='template_img/check.svg') }}"
+      data-currency="{{ url_for('static', filename='template_img/currency.svg') }}"
+    ></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script>
         var socket = io.connect('{{ host }}');
         socket.on('connect', function() {
           console.log("Websocket connected") 
         })
+        socket.on('payment-confirmed-{{payment_id}}', function() {
+          console.log("Pagamento confirmado");
+          location.reload();
+        })
+
     </script>
 
   </body>
