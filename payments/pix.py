@@ -8,7 +8,7 @@ class Pix:
     def create_payment(self):
         # Criar pagamento na instituição financeira
         # Essa classe vai abstrair, diminuir o acoplamento
-        bank_payment_id = uuid.uuid4()
+        bank_payment_id = str(uuid.uuid4())
         
         #qr_code
         hash_payment = f'hash_payment_{bank_payment_id}'
