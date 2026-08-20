@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}" />
 
     <title>Pagamento</title>
   </head>
@@ -19,7 +19,7 @@
     <main>
       <header>
         <div id="qr-code">
-          <img src="./img/qrcode.png" alt="QR Code" />
+          <img src="{{ url_for('static', filename='template_img/qrcode.png') }}" alt="QR Code" />
         </div>
 
         <aside>
@@ -30,7 +30,7 @@
           </p>
 
           <div id="purchase-value">
-            <img src="./img/tag.svg" alt="Ícone de tag" />
+            <img src="{{ url_for('static', filename='template_img/tag.svg')}}" alt="Ícone de tag" />
             <span>Compra de R$ <strong id="amount">287,90</strong></span>
           </div>
         </aside>
@@ -41,7 +41,7 @@
           <header>
             <small>Este QR Code expira em</small>
             <div>
-              <img src="./img/clock.svg" alt="Ícone relógio" />
+              <img src="{{ url_for('static', filename='template_img/clock.svg')}}" alt="Ícone relógio" />
               <span>30 minutos</span>
             </div>
           </header>
@@ -52,7 +52,7 @@
         <div id="order">
           <small>O número do seu pedido é</small>
           <div>
-            <img src="./img/basket.svg" alt="Ícone do pedido" />
+            <img src="{{ url_for('static', filename='template_img/basket.svg')}}" alt="Ícone do pedido" />
             <span>527485022</span>
           </div>
         </div>
