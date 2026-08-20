@@ -4,6 +4,7 @@ from repository.database import db
 from models.payment import Payment
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
+from payments.pix import Pix
 
 load_dotenv()
 
@@ -25,6 +26,12 @@ def create_payment_pix():
     expiration_date = datetime.now() + timedelta(minutes=30) #Data atual + 30 minutos (tempo até o pix expirar)
     
     new_payment = Payment(value=value, expiration_date=expiration_date)
+    
+    pix_obj = Pix() #Criação do objeto pix, sem parametros para o construtor
+    data_payment_pix = pix_obj.create_payment()
+    
+    new_payment.bank_payment_id = data_payment_pix['bank_payment_id']
+    new_payment.qr_code = data_payment_pix['qr_code_path']
     
     db.session.add(new_payment)
     db.session.commit()
