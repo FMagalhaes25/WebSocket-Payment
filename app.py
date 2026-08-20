@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, jsonify, send_file, render_template
+from flask_socketio import SocketIO
 from repository.database import db
 from models.payment import Payment
 from datetime import datetime, timedelta
@@ -13,6 +14,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 db.init_app(app)
+socketio = SocketIO(app)
 
 @app.route("/payments/pix", methods=['POST'])
 def create_payment_pix():
@@ -65,4 +67,4 @@ def payment_pix_page(payment_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, debug=True)
